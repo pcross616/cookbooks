@@ -9,14 +9,15 @@ Defaults        !lecture,tty_tickets,!fqdn
 # User privilege specification
 root    			ALL=(ALL) ALL
 
-<% @sudoers_users.each do |user| -%>
-<%= user %> ALL=(ALL) ALL
+# User that may gain special privileges
+<% @sudoers_users.each do |user_rights| -%>
+<%= user_rights %>
 <% end -%>
 
 # Members of the sysadmin group may gain root privileges
-%sysadmin 		ALL=(ALL) ALL
+%admins 		ALL=(ALL) ALL
 
-<% @sudoers_groups.each do |group| -%>
-# Members of the group '<%= group %>' may gain root privileges
-%<%= group %> ALL=(ALL) ALL
+# Members of the groups that may gain special privileges
+<% @sudoers_groups.each do |group_rights| -%>
+<%= group_rights %>
 <% end -%>
